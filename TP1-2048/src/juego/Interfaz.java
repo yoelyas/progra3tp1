@@ -51,7 +51,7 @@ public class Interfaz {
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
 		frame.getContentPane().setBackground(new Color(255, 204, 153));
-		frame.setBounds(100, 100, 340, 414);
+		frame.setBounds(100, 100, 469, 523);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		 
@@ -83,6 +83,12 @@ public class Interfaz {
 		label0x2.setBounds(223, 68, 70, 70);
 		frame.getContentPane().add(label0x2);
 		
+		JLabel label0x3 = new JLabel(tablero.obtenerCasillero(0, 3));
+		label0x3.setHorizontalAlignment(SwingConstants.CENTER);
+		label0x3.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label0x3.setBounds(322, 68, 70, 70);
+		frame.getContentPane().add(label0x3);
+		
 		JLabel label1x0 = new JLabel(tablero.obtenerCasillero(1, 0));
 		label1x0.setHorizontalAlignment(SwingConstants.CENTER);
 		label1x0.setFont(new Font("Tahoma", Font.BOLD, 41));
@@ -100,6 +106,12 @@ public class Interfaz {
 		label1x2.setFont(new Font("Tahoma", Font.BOLD, 41));
 		label1x2.setBounds(223, 159, 70, 70);
 		frame.getContentPane().add(label1x2);
+		
+		JLabel label1x3 = new JLabel(tablero.obtenerCasillero(1, 3));
+		label1x3.setHorizontalAlignment(SwingConstants.CENTER);
+		label1x3.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label1x3.setBounds(322, 159, 70, 70);
+		frame.getContentPane().add(label1x3);
 		
 		JLabel label2x2 = new JLabel(tablero.obtenerCasillero(2, 2));
 		label2x2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -119,13 +131,45 @@ public class Interfaz {
 		label2x0.setBounds(32, 273, 70, 70);
 		frame.getContentPane().add(label2x0);
 		
+		JLabel label2x3 = new JLabel(tablero.obtenerCasillero(2, 3));
+		label2x3.setHorizontalAlignment(SwingConstants.CENTER);
+		label2x3.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label2x3.setBounds(322, 273, 70, 70);
+		frame.getContentPane().add(label2x3);
+		
+		JLabel label3x0 = new JLabel(tablero.obtenerCasillero(3, 0));
+		label3x0.setHorizontalAlignment(SwingConstants.CENTER);
+		label3x0.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label3x0.setBounds(32, 366, 70, 70);
+		frame.getContentPane().add(label3x0);
+		
+		JLabel label3x1 = new JLabel(tablero.obtenerCasillero(3, 1));
+		label3x1.setHorizontalAlignment(SwingConstants.CENTER);
+		label3x1.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label3x1.setBounds(132, 366, 70, 70);
+		frame.getContentPane().add(label3x1);
+		
+		JLabel label3x2 = new JLabel(tablero.obtenerCasillero(3, 2));
+		label3x2.setHorizontalAlignment(SwingConstants.CENTER);
+		label3x2.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label3x2.setBounds(223, 366, 70, 70);
+		frame.getContentPane().add(label3x2);
+		
+		JLabel label3x3 = new JLabel(tablero.obtenerCasillero(3, 3));
+		label3x3.setHorizontalAlignment(SwingConstants.CENTER);
+		label3x3.setFont(new Font("Tahoma", Font.BOLD, 41));
+		label3x3.setBounds(322, 366, 70, 70);
+		frame.getContentPane().add(label3x3);
 		
 		JEditorPane editorPane_1 = new JEditorPane();
 		editorPane_1.setToolTipText("");
 		editorPane_1.setBackground(new Color(153, 102, 0));
 		editorPane_1.setEditable(false);
-		editorPane_1.setBounds(10, 59, 300, 300);
+		editorPane_1.setBounds(10, 59, 422, 414);
 		frame.getContentPane().add(editorPane_1);
+		
+		
+		
 		
 		
 	}
