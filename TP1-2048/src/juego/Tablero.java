@@ -29,6 +29,7 @@ public class Tablero {
 
 		
 	}
+
 	
 	public void llenarTablero() {
 		for (int i = 0; i < 4; i++) {
@@ -68,6 +69,52 @@ public class Tablero {
 	private void numeroRandomEnPosicionRandom() {
 		Casillero primerValor = casilleroRandomVacio();
 		tablero[primerValor.getX()][primerValor.getY()].setNumeroRandom();
+	}
+	
+	public void moverArriba() {
+		
+		for (int i = 0; i < 4; i++) {
+			int posicion = 0;
+			int comparador = 1;
+			int cursor = 0;
+			while (posicion <= 3 && comparador < 4) {
+				
+				if (posicion < 3 && tablero[posicion][i] == tablero[comparador][i] && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
+					
+					tablero[posicion][i].fusionar();
+					tablero[cursor][i].setValor(tablero[posicion][i].getValor());
+					
+					tablero[posicion][i].setValor(0);
+					tablero[comparador][i].setValor(0);;
+					cursor++;
+					posicion = comparador + 1;
+					comparador += 2;
+					
+				} else if (tablero[posicion][i].estaVacio()) {
+					posicion++;
+					comparador++;
+					
+				} else if (tablero[comparador][i].estaVacio()) {
+					comparador++;
+					
+				} else { // Ambos son diferentes de cero y diferentes entre
+							// si
+					int aux = tablero[posicion][i].getValor();
+					tablero[posicion][i].setValor(0);
+					tablero[cursor][i].setValor(aux);;
+					cursor++;
+					posicion = comparador;
+					comparador++;
+				}
+			}
+			if (posicion <= 3) {
+				int aux = tablero[posicion][i].getValor();
+				tablero[posicion][i].setValor(0);
+				tablero[cursor][i].setValor(aux);
+
+			}
+		}
+		numeroRandomEnPosicionRandom();
 	}
 	
 	//-----------------------------------------------------------//
