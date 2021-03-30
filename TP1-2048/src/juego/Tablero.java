@@ -79,12 +79,12 @@ public class Tablero {
 			int cursor = 0;
 			while (posicion <= 3 && comparador < 4) {
 				
-				if (posicion < 3 && tablero[posicion][i] == tablero[comparador][i] && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
-					
+				if (posicion < 3 && tablero[posicion][i].getValor() == tablero[comparador][i].getValor() && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
+		
 					tablero[posicion][i].fusionar();
 					tablero[cursor][i].setValor(tablero[posicion][i].getValor());
 					
-					tablero[posicion][i].setValor(0);
+					//tablero[posicion][i].setValor(0);
 					tablero[comparador][i].setValor(0);;
 					cursor++;
 					posicion = comparador + 1;
@@ -116,6 +116,141 @@ public class Tablero {
 		}
 		numeroRandomEnPosicionRandom();
 	}
+public void moverIzquierda() {
+		
+		for (int i = 0; i < 4; i++) {
+			int posicion = 0;
+			int comparador = 1;
+			int cursor = 0;
+			while (posicion <= 3 && comparador < 4) {
+				
+				if (posicion < 3 && tablero[i][posicion].getValor() == tablero[i][comparador].getValor() && !tablero[i][posicion].estaVacio() && !tablero[i][comparador].estaVacio()) {
+		
+					tablero[i][posicion].fusionar();
+					tablero[i][cursor].setValor(tablero[i][posicion].getValor());
+					
+					//tablero[posicion][i].setValor(0);
+					tablero[i][comparador].setValor(0);;
+					cursor++;
+					posicion = comparador + 1;
+					comparador += 2;
+					
+				} else if (tablero[i][posicion].estaVacio()) {
+					posicion++;
+					comparador++;
+					
+				} else if (tablero[i][comparador].estaVacio()) {
+					comparador++;
+					
+				} else { // Ambos son diferentes de cero y diferentes entre
+							// si
+					int aux = tablero[i][posicion].getValor();
+					tablero[i][posicion].setValor(0);
+					tablero[i][cursor].setValor(aux);;
+					cursor++;
+					posicion = comparador;
+					comparador++;
+				}
+			}
+			if (posicion <= 3) {
+				int aux = tablero[i][posicion].getValor();
+				tablero[i][posicion].setValor(0);
+				tablero[i][cursor].setValor(aux);
+
+			}
+		}
+		numeroRandomEnPosicionRandom();
+	}
+public void moverAbajo() {
+	
+	for (int i = 0; i < 4; i++) {
+		int posicion = 3;
+		int comparador = 2;
+		int cursor = 3;
+		while (posicion >= 0 && comparador > -1) {
+			
+			if (posicion > 0 && tablero[posicion][i].getValor() == tablero[comparador][i].getValor() && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
+	
+				tablero[posicion][i].fusionar();
+				tablero[cursor][i].setValor(tablero[posicion][i].getValor());
+				
+				//tablero[posicion][i].setValor(0);
+				tablero[comparador][i].setValor(0);;
+				cursor--;
+				posicion = comparador - 1;
+				comparador -= 2;
+				
+			} else if (tablero[posicion][i].estaVacio()) {
+				posicion--;
+				comparador--;
+				
+			} else if (tablero[comparador][i].estaVacio()) {
+				comparador--;
+				
+			} else { // Ambos son diferentes de cero y diferentes entre
+						// si
+				int aux = tablero[posicion][i].getValor();
+				tablero[posicion][i].setValor(0);
+				tablero[cursor][i].setValor(aux);;
+				cursor--;
+				posicion = comparador;
+				comparador--;
+			}
+		}
+		if (posicion >= 0) {
+			int aux = tablero[posicion][i].getValor();
+			tablero[posicion][i].setValor(0);
+			tablero[cursor][i].setValor(aux);
+
+		}
+	}
+	numeroRandomEnPosicionRandom();
+}
+public void moverDerecha() {
+	
+	for (int i = 0; i < 4; i++) {
+		int posicion = 3;
+		int comparador = 2;
+		int cursor = 3;
+		while (posicion >= 0 && comparador > -1) {
+			
+			if (posicion > 0 && tablero[i][posicion].getValor() == tablero[i][comparador].getValor() && !tablero[i][posicion].estaVacio() && !tablero[i][comparador].estaVacio()) {
+	
+				tablero[i][posicion].fusionar();
+				tablero[i][cursor].setValor(tablero[i][posicion].getValor());
+				
+				//tablero[posicion][i].setValor(0);
+				tablero[i][comparador].setValor(0);;
+				cursor--;
+				posicion = comparador - 1;
+				comparador -= 2;
+				
+			} else if (tablero[i][posicion].estaVacio()) {
+				posicion--;
+				comparador--;
+				
+			} else if (tablero[i][comparador].estaVacio()) {
+				comparador--;
+				
+			} else { // Ambos son diferentes de cero y diferentes entre
+						// si
+				int aux = tablero[i][posicion].getValor();
+				tablero[i][posicion].setValor(0);
+				tablero[i][cursor].setValor(aux);;
+				cursor--;
+				posicion = comparador;
+				comparador--;
+			}
+		}
+		if (posicion >= 0) {
+			int aux = tablero[i][posicion].getValor();
+			tablero[i][posicion].setValor(0);
+			tablero[i][cursor].setValor(aux);
+
+		}
+	}
+	numeroRandomEnPosicionRandom();
+}
 	
 	//-----------------------------------------------------------//
 	

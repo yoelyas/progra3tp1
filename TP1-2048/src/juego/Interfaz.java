@@ -61,27 +61,42 @@ public class Interfaz {
 		 
 		
 		//detecta cuando pulsamos flecha arriba 
-		
+
 		JEditorPane editorPane = new JEditorPane();
 		editorPane.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
+
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 					tablero.moverArriba();
 					actualizarTablero();
-					
+
 				}
-				
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					tablero.moverIzquierda();
+					actualizarTablero();
+
+				}
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					tablero.moverAbajo();
+					actualizarTablero();
+
+				}
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					tablero.moverDerecha();
+					actualizarTablero();
+
+				}
+
 			}
 
 			private void actualizarTablero() {
-				for (int i = 0 ; i < 4; i ++) {
-					for (int j = 0 ; j < 4; j++) {
-						tableroLabels[i][j].setText(tablero.obtenerCasillero(i,j)); 
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j < 4; j++) {
+						tableroLabels[i][j].setText(tablero.obtenerCasillero(i, j));
 					}
 				}
-				
+
 			}
 		});
 		
