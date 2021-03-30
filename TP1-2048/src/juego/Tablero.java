@@ -27,7 +27,6 @@ public class Tablero {
 		
 		numeroRandomEnPosicionRandom();
 
-		
 	}
 
 	
@@ -62,7 +61,8 @@ public class Tablero {
 	
 	
 	public String obtenerCasillero(int x, int y) {
-		return Integer.toString(this.tablero[x][y].getValor());
+		String numerito = Integer.toString(this.tablero[x][y].getValor());
+		return numerito.equals("0") ? "" : numerito;
 	}
 	
 	
@@ -272,7 +272,7 @@ public void moverDerecha() {
 	public static void main (String [] strg) {
 		Tablero tablero = new Tablero();
 		
-		tablero.imprimir();;
+		tablero.imprimir();
 	}
 
 	
