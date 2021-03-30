@@ -66,7 +66,8 @@ public class Interfaz {
 		editorPane.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-
+				// Podemos tener 1 solo mover publico en tablero, los mover en x direccion privados
+				// Habria que pasar como parametro la dirección en todo caso
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 					tablero.moverArriba();
 					actualizarTablero();
