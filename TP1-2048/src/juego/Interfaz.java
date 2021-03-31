@@ -105,9 +105,6 @@ public class Interfaz {
 						if (number.length()==4) {
 							tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 34));
 						}
-						/*if(Integer.valueOf(number) == 2048) {
-							System.out.println("ganaste");
-						}*/
 					}
 				}
 
