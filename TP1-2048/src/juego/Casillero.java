@@ -50,10 +50,8 @@ public class Casillero {
 	}
 	
 	public void setNumeroRandom() {
-		
 		int random = (int) (Math.random() * 2+1); 
-		setValor(random * 2);
-				
+		setValor(random * 2);		
 	}
 
 }

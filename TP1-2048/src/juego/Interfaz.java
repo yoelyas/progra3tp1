@@ -97,13 +97,17 @@ public class Interfaz {
 			private void actualizarTablero() {
 				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 4; j++) {
-						tableroLabels[i][j].setText(tablero.obtenerCasillero(i, j));
+						String number =  tablero.obtenerCasillero(i, j);
+						tableroLabels[i][j].setText(number);
 						tableroLabels[i][j].setForeground(new Color(0, 0, 0));
-						tableroLabels[i][j].setBackground(changeColor(tablero.obtenerCasillero(i, j)));
+						tableroLabels[i][j].setBackground(changeColor(number));
 						tableroLabels[i][j].setOpaque(true);
-						if (tablero.obtenerCasillero(i, j).length()==4) {
+						if (number.length()==4) {
 							tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 34));
 						}
+						/*if(Integer.valueOf(number) == 2048) {
+							System.out.println("ganaste");
+						}*/
 					}
 				}
 

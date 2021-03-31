@@ -52,10 +52,12 @@ public class Tablero {
 				}
 			}
 		}
+		if(posicionesVacias.size() >= 1 ) {
+			int posicionRandom = (int) (Math.random() * (posicionesVacias.size() - 1));
+			return posicionesVacias.get(posicionRandom);
+		}
 		
-		int posicionRandom = (int) (Math.random() * (posicionesVacias.size() - 1));
-		
-		return posicionesVacias.get(posicionRandom);
+		return null;
 		
 	}
 	
@@ -68,7 +70,9 @@ public class Tablero {
 	
 	private void numeroRandomEnPosicionRandom() {
 		Casillero primerValor = casilleroRandomVacio();
+		if(primerValor != null) {
 		tablero[primerValor.getX()][primerValor.getY()].setNumeroRandom();
+		}
 	}
 	
 	public void moverArriba() {
@@ -77,6 +81,7 @@ public class Tablero {
 			int posicion = 0;
 			int comparador = 1;
 			int cursor = 0;
+			
 			while (posicion <= 3 && comparador < 4) {
 				
 				if (posicion < 3 && tablero[posicion][i].getValor() == tablero[comparador][i].getValor() && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
@@ -113,6 +118,7 @@ public class Tablero {
 				tablero[cursor][i].setValor(aux);
 
 			}
+			
 		}
 		numeroRandomEnPosicionRandom();
 	}
