@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Tablero {
 	private Casillero [][] tablero;
+	private int score = 0;
 	
 	public Tablero() 
 	{		
@@ -75,6 +76,15 @@ public class Tablero {
 		}
 	}
 	
+	private void setScore(int valor) {
+		this.score += valor;
+		
+	}
+	
+	public int getScore() {
+		return this.score;
+	}
+	
 	public void moverArriba() {
 		
 		for (int i = 0; i < 4; i++) {
@@ -88,6 +98,8 @@ public class Tablero {
 		
 					tablero[posicion][i].fusionar();
 					tablero[cursor][i].setValor(tablero[posicion][i].getValor());
+					
+					setScore(tablero[posicion][i].getValor());
 					
 					//tablero[posicion][i].setValor(0);
 					tablero[comparador][i].setValor(0);;
@@ -122,6 +134,8 @@ public class Tablero {
 		}
 		numeroRandomEnPosicionRandom();
 	}
+
+
 public void moverIzquierda() {
 		
 		for (int i = 0; i < 4; i++) {
@@ -134,6 +148,8 @@ public void moverIzquierda() {
 		
 					tablero[i][posicion].fusionar();
 					tablero[i][cursor].setValor(tablero[i][posicion].getValor());
+					
+					setScore(tablero[i][posicion].getValor());
 					
 					//tablero[posicion][i].setValor(0);
 					tablero[i][comparador].setValor(0);;
@@ -180,6 +196,8 @@ public void moverAbajo() {
 				tablero[posicion][i].fusionar();
 				tablero[cursor][i].setValor(tablero[posicion][i].getValor());
 				
+				setScore(tablero[posicion][i].getValor());
+				
 				//tablero[posicion][i].setValor(0);
 				tablero[comparador][i].setValor(0);;
 				cursor--;
@@ -224,6 +242,8 @@ public void moverDerecha() {
 	
 				tablero[i][posicion].fusionar();
 				tablero[i][cursor].setValor(tablero[i][posicion].getValor());
+				
+				setScore(tablero[i][posicion].getValor());
 				
 				//tablero[posicion][i].setValor(0);
 				tablero[i][comparador].setValor(0);;

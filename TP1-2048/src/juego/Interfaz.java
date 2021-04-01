@@ -17,7 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class Interfaz {
 
 	private JFrame frmJuego;
-
+	private JEditorPane paneScore;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -102,6 +103,10 @@ public class Interfaz {
 						tableroLabels[i][j].setForeground(new Color(0, 0, 0));
 						tableroLabels[i][j].setBackground(changeColor(number));
 						tableroLabels[i][j].setOpaque(true);
+						
+						paneScore.setText("SCORE: " + tablero.getScore() );
+						
+						
 						if (number.length()==4) {
 							tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 34));
 						}
@@ -273,6 +278,13 @@ public class Interfaz {
 		editorPane_1.setEditable(false);
 		editorPane_1.setBounds(12, 53, 460, 460);
 		frmJuego.getContentPane().add(editorPane_1);
+		
+		paneScore = new JEditorPane();
+		paneScore.setText("SCORE:" + tablero.getScore());
+		paneScore.setBackground(new Color(150,150,150));
+		paneScore.setFont(new Font("Tahoma", Font.BOLD, 25));
+		paneScore.setBounds(253, 11, 200, 31);
+		frmJuego.getContentPane().add(paneScore);
 
 	}
 
@@ -301,5 +313,4 @@ public class Interfaz {
 			return new Color(204, 192, 179);
 		}
 	}
-
 }
