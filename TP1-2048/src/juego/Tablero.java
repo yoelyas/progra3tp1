@@ -1,6 +1,7 @@
 package juego;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Tablero {
 	private Casillero [][] tablero;
@@ -32,9 +33,28 @@ public class Tablero {
 
 	
 	public void llenarTablero() {
+		/*
+		tablero[0][0] = new Casillero(2);
+		tablero[0][1] = new Casillero(2);
+		tablero[0][2] = new Casillero(2);
+		tablero[0][3] = new Casillero(2);
+		tablero[1][0] = new Casillero(2);
+		tablero[1][1] = new Casillero(6);
+		tablero[1][2] = new Casillero(7);
+		tablero[1][3] = new Casillero(8);
+		tablero[2][0] = new Casillero(2);
+		tablero[2][1] = new Casillero(10);
+		tablero[2][2] = new Casillero(11);
+		tablero[2][3] = new Casillero(12);
+		tablero[3][0] = new Casillero(2);
+		tablero[3][1] = new Casillero(14);
+		tablero[3][2] = new Casillero(15);
+		tablero[3][3] = new Casillero(16);
+		*/
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				tablero[i][j] = new Casillero(0);				
+				tablero[i][j] = new Casillero(0);	
+				//System.out.println( "i:" + i + " "+ "j:" + j + " suma:"+ i+j);
 			}
 		}
 		
@@ -85,198 +105,142 @@ public class Tablero {
 		return this.score;
 	}
 	
-	public void moverArriba() {
+	
+	public void mover(String direccion) {
 		
-		for (int i = 0; i < 4; i++) {
-			int posicion = 0;
-			int comparador = 1;
-			int cursor = 0;
+		int tamanio = 4; // tamanio del tablero
+		
+		ArrayList<Integer> eje1 = new ArrayList<Integer>();
+		ArrayList<Integer> eje2 = new ArrayList<Integer>();
+		
+		boolean porFila = false;
+		boolean porColumna = false;
+		
+		int fila = 0;
+		int columna = 0;
+							
+		switch (direccion) {
+		
+			case "arriba":
+				porFila = false;
+				porColumna = true;
 			
-			while (posicion <= 3 && comparador < 4) {
+				// setear valores de los ejes
+				for (int n = 0; n < tamanio; n++) {
+					eje1.add(n);
+					eje2.add(n);
+				}			
+				 
+				break;
 				
-				if (posicion < 3 && tablero[posicion][i].getValor() == tablero[comparador][i].getValor() && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
-		
-					tablero[posicion][i].fusionar();
-					tablero[cursor][i].setValor(tablero[posicion][i].getValor());
-					
-					setScore(tablero[posicion][i].getValor());
-					
-					//tablero[posicion][i].setValor(0);
-					tablero[comparador][i].setValor(0);;
-					cursor++;
-					posicion = comparador + 1;
-					comparador += 2;
-					
-				} else if (tablero[posicion][i].estaVacio()) {
-					posicion++;
-					comparador++;
-					
-				} else if (tablero[comparador][i].estaVacio()) {
-					comparador++;
-					
-				} else { // Ambos son diferentes de cero y diferentes entre
-							// si
-					int aux = tablero[posicion][i].getValor();
-					tablero[posicion][i].setValor(0);
-					tablero[cursor][i].setValor(aux);;
-					cursor++;
-					posicion = comparador;
-					comparador++;
+			case "abajo":
+				
+				for (int n = 0; n < tamanio; n++) {
+					eje1.add(n);
 				}
-			}
-			if (posicion <= 3) {
-				int aux = tablero[posicion][i].getValor();
-				tablero[posicion][i].setValor(0);
-				tablero[cursor][i].setValor(aux);
-
-			}
-			
-		}
-		numeroRandomEnPosicionRandom();
-	}
-
-
-public void moverIzquierda() {
-		
-		for (int i = 0; i < 4; i++) {
-			int posicion = 0;
-			int comparador = 1;
-			int cursor = 0;
-			while (posicion <= 3 && comparador < 4) {
 				
-				if (posicion < 3 && tablero[i][posicion].getValor() == tablero[i][comparador].getValor() && !tablero[i][posicion].estaVacio() && !tablero[i][comparador].estaVacio()) {
-		
-					tablero[i][posicion].fusionar();
-					tablero[i][cursor].setValor(tablero[i][posicion].getValor());
-					
-					setScore(tablero[i][posicion].getValor());
-					
-					//tablero[posicion][i].setValor(0);
-					tablero[i][comparador].setValor(0);;
-					cursor++;
-					posicion = comparador + 1;
-					comparador += 2;
-					
-				} else if (tablero[i][posicion].estaVacio()) {
-					posicion++;
-					comparador++;
-					
-				} else if (tablero[i][comparador].estaVacio()) {
-					comparador++;
-					
-				} else { // Ambos son diferentes de cero y diferentes entre
-							// si
-					int aux = tablero[i][posicion].getValor();
-					tablero[i][posicion].setValor(0);
-					tablero[i][cursor].setValor(aux);;
-					cursor++;
-					posicion = comparador;
-					comparador++;
+				for (int m = tamanio -1; m >= 0; m--) {
+					eje2.add(m);
+					System.out.println(m);
 				}
-			}
-			if (posicion <= 3) {
-				int aux = tablero[i][posicion].getValor();
-				tablero[i][posicion].setValor(0);
-				tablero[i][cursor].setValor(aux);
-
-			}
+				porFila = false;
+				porColumna = true;
+				
+				break;
+				
+			case "izquierda":		
+					
+				for (int n = 0; n < tamanio; n++) {
+					eje1.add(n);
+					eje2.add(n);
+				}
+				
+				porFila = true;
+				porColumna = false;	
+				
+				break;
+				
+			case "derecha":
+				
+				for (int n = 0; n < tamanio; n++) {
+					eje1.add(n);
+				}
+				
+				for (int m = tamanio -1; m >= 0; m--) {
+					eje2.add(m);
+					System.out.println(m);
+				}
+				
+				porFila = true;
+				porColumna = false;
+				
+				break;
 		}
-		numeroRandomEnPosicionRandom();
-	}
-public void moverAbajo() {
-	
-	for (int i = 0; i < 4; i++) {
-		int posicion = 3;
-		int comparador = 2;
-		int cursor = 3;
-		while (posicion >= 0 && comparador > -1) {
+		
+		boolean algunMovimiento = false;
+		
+		// Itero segun criterios (ejes - iterador principal y secundario)
+		// Itero sobre el eje principal
+		for (int i1 = 0; i1 < eje1.size(); i1++) {
 			
-			if (posicion > 0 && tablero[posicion][i].getValor() == tablero[comparador][i].getValor() && !tablero[posicion][i].estaVacio() && !tablero[comparador][i].estaVacio()) {
-	
-				tablero[posicion][i].fusionar();
-				tablero[cursor][i].setValor(tablero[posicion][i].getValor());
-				
-				setScore(tablero[posicion][i].getValor());
-				
-				//tablero[posicion][i].setValor(0);
-				tablero[comparador][i].setValor(0);;
-				cursor--;
-				posicion = comparador - 1;
-				comparador -= 2;
-				
-			} else if (tablero[posicion][i].estaVacio()) {
-				posicion--;
-				comparador--;
-				
-			} else if (tablero[comparador][i].estaVacio()) {
-				comparador--;
-				
-			} else { // Ambos son diferentes de cero y diferentes entre
-						// si
-				int aux = tablero[posicion][i].getValor();
-				tablero[posicion][i].setValor(0);
-				tablero[cursor][i].setValor(aux);;
-				cursor--;
-				posicion = comparador;
-				comparador--;
-			}
-		}
-		if (posicion >= 0) {
-			int aux = tablero[posicion][i].getValor();
-			tablero[posicion][i].setValor(0);
-			tablero[cursor][i].setValor(aux);
-
-		}
-	}
-	numeroRandomEnPosicionRandom();
-}
-public void moverDerecha() {
-	
-	for (int i = 0; i < 4; i++) {
-		int posicion = 3;
-		int comparador = 2;
-		int cursor = 3;
-		while (posicion >= 0 && comparador > -1) {
+			// flag de control para saber si ya finalizaron las operaciones de movimiento y fusion
+			boolean fin = false; 
 			
-			if (posicion > 0 && tablero[i][posicion].getValor() == tablero[i][comparador].getValor() && !tablero[i][posicion].estaVacio() && !tablero[i][comparador].estaVacio()) {
-	
-				tablero[i][posicion].fusionar();
-				tablero[i][cursor].setValor(tablero[i][posicion].getValor());
+			// indice del casillero por el cual debe comenzarse a iterar
+			// sera util al haber una fusion para evitar multiples fusiones
+			int baseIteracion = 0;
+			
+			while (!fin) {
 				
-				setScore(tablero[i][posicion].getValor());
+				boolean seMovio= false;
 				
-				//tablero[posicion][i].setValor(0);
-				tablero[i][comparador].setValor(0);;
-				cursor--;
-				posicion = comparador - 1;
-				comparador -= 2;
+				// Recorro el eje secundario
+				for (int i2 = baseIteracion; i2 < eje2.size() -1; i2++) {
+					
+					fila = porFila ? eje1.get(i1) : eje2.get(i2);
+					columna = porColumna ? eje1.get(i1) : eje2.get(i2);
+
+					System.out.println("C[" + columna + "] F[" + fila + "]: " + tablero[fila][columna].getValor());
+					
+					// si itero por fila solo incremento el indice del eje secundario (i2)
+					int filaSiguiente = porFila ? eje1.get(i1) : eje2.get(i2 +1);
+					//si itero por columna solo incremento el indice secundario (i2)
+					int columnaSiguiente = porColumna ? eje1.get(i1) : eje2.get(i2 +1);
+					
+					if (tablero[fila][columna].estaVacio()) {
+						
+						if (!tablero[filaSiguiente][columnaSiguiente].estaVacio()) {
+							tablero[fila][columna].setValor(tablero[filaSiguiente][columnaSiguiente].getValor());
+							tablero[filaSiguiente][columnaSiguiente].setValor(0);
+							seMovio = true;
+							
+						}
+						
+					} else if (!tablero[filaSiguiente][columnaSiguiente].estaVacio() 
+							&& tablero[fila][columna].getValor() == tablero[filaSiguiente][columnaSiguiente].getValor()) {
+						
+						tablero[fila][columna].fusionar();
+						tablero[filaSiguiente][columnaSiguiente].setValor(0);
+						baseIteracion = i2+1;  
+						seMovio = true;
+						setScore(tablero[fila][columna].getValor());
+					}
+					
+				}
 				
-			} else if (tablero[i][posicion].estaVacio()) {
-				posicion--;
-				comparador--;
+				if (!seMovio) {
+					fin = true;	
+				}
 				
-			} else if (tablero[i][comparador].estaVacio()) {
-				comparador--;
-				
-			} else { // Ambos son diferentes de cero y diferentes entre
-						// si
-				int aux = tablero[i][posicion].getValor();
-				tablero[i][posicion].setValor(0);
-				tablero[i][cursor].setValor(aux);;
-				cursor--;
-				posicion = comparador;
-				comparador--;
+				algunMovimiento = algunMovimiento || seMovio;
 			}
 		}
-		if (posicion >= 0) {
-			int aux = tablero[i][posicion].getValor();
-			tablero[i][posicion].setValor(0);
-			tablero[i][cursor].setValor(aux);
-
+		
+		if (algunMovimiento) {
+			numeroRandomEnPosicionRandom();
 		}
+
 	}
-	numeroRandomEnPosicionRandom();
-}
 	
 	//-----------------------------------------------------------//
 	

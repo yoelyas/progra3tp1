@@ -73,22 +73,22 @@ public class Interfaz {
 				// privados
 				// Habria que pasar como parametro la dirección en todo caso
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
-					tablero.moverArriba();
+					tablero.mover("arriba");
 					actualizarTablero();
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-					tablero.moverIzquierda();
+					tablero.mover("izquierda");
 					actualizarTablero();
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					tablero.moverAbajo();
+					tablero.mover("abajo");
 					actualizarTablero();
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-					tablero.moverDerecha();
+					tablero.mover("derecha");
 					actualizarTablero();
 
 				}
