@@ -123,7 +123,7 @@ public class Tablero {
 
 			for (int m = tamanio - 1; m >= 0; m--) {
 				eje2.add(m);
-				System.out.println(m);
+				//System.out.println(m);
 			}
 			porFila = false;
 			porColumna = true;
@@ -150,7 +150,7 @@ public class Tablero {
 
 			for (int m = tamanio - 1; m >= 0; m--) {
 				eje2.add(m);
-				System.out.println(m);
+				//System.out.println(m);
 			}
 
 			porFila = true;
@@ -183,7 +183,7 @@ public class Tablero {
 					fila = porFila ? eje1.get(i1) : eje2.get(i2);
 					columna = porColumna ? eje1.get(i1) : eje2.get(i2);
 
-					System.out.println("C[" + columna + "] F[" + fila + "]: " + tablero[fila][columna].getValor());
+					//System.out.println("C[" + columna + "] F[" + fila + "]: " + tablero[fila][columna].getValor());
 
 					// si itero por fila solo incremento el indice del eje secundario (i2)
 					int filaSiguiente = porFila ? eje1.get(i1) : eje2.get(i2 + 1);
@@ -192,13 +192,13 @@ public class Tablero {
 
 					if (tablero[fila][columna].estaVacio()) {
 
-						if (!tablero[filaSiguiente][columnaSiguiente].estaVacio()) {
+						if (!tablero[filaSiguiente][columnaSiguiente].estaVacio()) { //si esta vacio, la fila siguiente y la columna siguiente estan vacias settea el valor y actualiza el flag
 							tablero[fila][columna].setValor(tablero[filaSiguiente][columnaSiguiente].getValor());
 							tablero[filaSiguiente][columnaSiguiente].setValor(0);
 							seMovio = true;
 
 						}
-
+						//aca ocurre la fusion 
 					} else if (!tablero[filaSiguiente][columnaSiguiente].estaVacio() && tablero[fila][columna]
 							.getValor() == tablero[filaSiguiente][columnaSiguiente].getValor()) {
 
@@ -224,9 +224,25 @@ public class Tablero {
 		}
 
 	}
+	/*
+	public boolean jugable() {
+		for(int i=0; i<3; i++ ) {
+			for(int j=0; j<3; j++ ) {
+				if(tablero[i][j].estaVacio()) {
+					return true;
+				}
+				if(tablero[i][j] =! tablero[i+1][j]) {
+					
+				}
+			}
+		}
+		return true;
+	} 
+	*/
+	
 
 	// -----------------------------------------------------------//
-
+/*
 	public void imprimir() {
 		for (int i = 0; i <= 3; i++) {
 			System.out.println("\n");
@@ -236,7 +252,7 @@ public class Tablero {
 		}
 
 	}
-
+*/
 	public static void main(String[] strg) {
 		Tablero tablero = new Tablero();
 
