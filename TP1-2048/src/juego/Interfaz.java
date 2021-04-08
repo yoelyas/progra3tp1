@@ -18,7 +18,7 @@ public class Interfaz {
 
 	private JFrame frmJuego;
 	private JEditorPane paneScore;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -98,21 +98,25 @@ public class Interfaz {
 			private void actualizarTablero() {
 				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 4; j++) {
-						String number = tablero.obtenerCasillero(i, j);
+						String number =  tablero.obtenerCasillero(i, j);
 						tableroLabels[i][j].setText(number);
 						tableroLabels[i][j].setForeground(new Color(0, 0, 0));
 						tableroLabels[i][j].setBackground(changeColor(number));
 						tableroLabels[i][j].setOpaque(true);
-
-						paneScore.setText("SCORE: " + tablero.getScore());
-
-						if (number.length() == 4) {
+						
+						paneScore.setText("SCORE: " + tablero.getScore() );
+						
+						
+						if (number.length()==4) {
 							tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 34));
 						}
 					}
 				}
-
+				if (!Tablero.jugable()) {
+					System.out.println("no se puede jugar");
+				}
 			}
+			
 		});
 
 		editorPane.setEditable(false);
@@ -273,14 +277,14 @@ public class Interfaz {
 
 		JEditorPane editorPane_1 = new JEditorPane();
 		editorPane_1.setToolTipText("");
-		editorPane_1.setBackground(new Color( 187, 173, 160));
+		editorPane_1.setBackground(new Color(150, 150, 150));
 		editorPane_1.setEditable(false);
 		editorPane_1.setBounds(12, 53, 460, 460);
 		frmJuego.getContentPane().add(editorPane_1);
-
+		
 		paneScore = new JEditorPane();
-		paneScore.setText("SCORE: " + tablero.getScore());
-		paneScore.setBackground(new Color(255, 204, 153));
+		paneScore.setText("SCORE:" + tablero.getScore());
+		paneScore.setBackground(new Color(150,150,150));
 		paneScore.setFont(new Font("Tahoma", Font.BOLD, 25));
 		paneScore.setBounds(253, 11, 200, 31);
 		frmJuego.getContentPane().add(paneScore);
@@ -291,27 +295,25 @@ public class Interfaz {
 		if (valor.equals("2")) {
 			return new Color(238, 228, 218);
 		} else if (valor.equals("4")) {
-			return new Color(237, 224, 200);
+			return new Color(237, 224, 192);
 		} else if (valor.equals("8")) {
 			return new Color(242, 177, 121);
 		} else if (valor.equals("16")) {
 			return new Color(245, 149, 99);
 		} else if (valor.equals("32")) {
-			return new Color(246, 124, 95);
+			return new Color(237, 114, 90);
 		} else if (valor.equals("64")) {
-			return new Color(247, 95, 59);
+			return new Color(246, 94, 59);
 		} else if (valor.equals("128")) {
-			return new Color(237, 208, 115);
+			return new Color(237, 207, 114);
 		} else if (valor.equals("256")) {
-			return new Color(237, 204, 98);
+			return new Color(237, 204, 87);
 		} else if (valor.equals("512")) {
-			return new Color(237, 197, 80); 
+			return new Color(237, 197, 60);
 		} else if (valor.equals("1024")) {
-			return new Color(245, 197, 63);
-		} else if (valor.equals("2048")) {
-			return new Color(230, 180, 0);
+			return new Color(237, 197, 63);
 		} else {
-			return new Color(205, 193, 180);
+			return new Color(204, 192, 179);
 		}
 	}
 }

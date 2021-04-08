@@ -48,6 +48,10 @@ public class Casillero {
 	public int getY() {
 		return this.posY;
 	}
+	
+    public boolean isNull() {
+    return false;
+    }
 
 	public void setNumeroRandom() {
 		int random = (int) (Math.random() * 2 + 1);
