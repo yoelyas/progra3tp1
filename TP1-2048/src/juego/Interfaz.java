@@ -6,19 +6,26 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
+
+import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+
 
 public class Interfaz {
 
 	private JFrame frmJuego;
 	private JEditorPane paneScore;
-	
+	private Tablero tablero;
 	/**
 	 * Launch the application.
 	 */
@@ -49,11 +56,12 @@ public class Interfaz {
 	private void initialize() {
 
 		// crea un tablero
-		Tablero tablero = new Tablero();
-
+		tablero = new Tablero();
 		JLabel[][] tableroLabels = new JLabel[4][4];
+		
 
 		// cositas de diseño random
+		
 
 		frmJuego = new JFrame();
 		frmJuego.setTitle("Juego 2048 :)");
@@ -110,10 +118,29 @@ public class Interfaz {
 						if (number.length()==4) {
 							tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 34));
 						}
+						
+						if (number.equals("2048")) {
+							int respuesta = JOptionPane.showConfirmDialog(null, "Ganaste!!! deseas continuar?", "Ganaste!!!",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+							
+							 if (respuesta == JOptionPane.NO_OPTION) {
+								 System.exit(0);
+							 }
+						}
 					}
 				}
 				if (!Tablero.jugable()) {
-					System.out.println("no se puede jugar");
+					
+					 int respuesta = JOptionPane.showConfirmDialog(null, "Desea iniciar un nuevo Juego", "Confirmar",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					 
+					 if(respuesta == JOptionPane.YES_OPTION) {
+						 tablero = new Tablero();
+						 initialize();
+						 actualizarTablero();
+						 
+					 }else if (respuesta == JOptionPane.NO_OPTION) {
+						 System.exit(0);
+					 }
+					 
 				}
 			}
 			
