@@ -377,7 +377,9 @@ public class Interfaz {
 	}
 	
 	private Color changeColor(String valor) {
-		if (valor.equals("2")) {
+		if(valor.equals("0") || valor.equals("")) {
+			return new Color(204, 192, 179);
+		} else if (valor.equals("2")) {
 			return new Color(238, 228, 218);
 		} else if (valor.equals("4")) {
 			return new Color(237, 224, 192);
@@ -400,7 +402,7 @@ public class Interfaz {
 		} else if (valor.equals("2048")) {
 			return new Color(237, 200, 53);
 		} else {
-			return new Color(204, 192, 179);
+			return new Color(204, 192, 0);
 		}
 	}
 }

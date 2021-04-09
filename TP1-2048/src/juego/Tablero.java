@@ -28,14 +28,14 @@ public class Tablero {
 
 	public void llenarTablero() {
 		
-		 tablero[0][0] = new Casillero(0); tablero[0][1] = new Casillero(0);
-		 tablero[0][2] = new Casillero(4); tablero[0][3] = new Casillero(512);
+		 tablero[0][0] = new Casillero(512); tablero[0][1] = new Casillero(512);
+		 tablero[0][2] = new Casillero(512); tablero[0][3] = new Casillero(512);
 		 tablero[1][0] = new Casillero(512); tablero[1][1] = new Casillero(1024);
-		 tablero[1][2] = new Casillero(0); tablero[1][3] = new Casillero(0);
-		 tablero[2][0] = new Casillero(0); tablero[2][1] = new Casillero(0);
-		 tablero[2][2] = new Casillero(0); tablero[2][3] = new Casillero(0);
-		 tablero[3][0] = new Casillero(0); tablero[3][1] = new Casillero(0);
-		 tablero[3][2] = new Casillero(0); tablero[3][3] = new Casillero(0);
+		 tablero[1][2] = new Casillero(512); tablero[1][3] = new Casillero(512);
+		 tablero[2][0] = new Casillero(512); tablero[2][1] = new Casillero(512);
+		 tablero[2][2] = new Casillero(512); tablero[2][3] = new Casillero(512);
+		 tablero[3][0] = new Casillero(512); tablero[3][1] = new Casillero(512);
+		 tablero[3][2] = new Casillero(512); tablero[3][3] = new Casillero(512);
 		 /*
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
