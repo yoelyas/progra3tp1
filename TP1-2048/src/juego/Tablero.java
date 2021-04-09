@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Tablero {
-	private static Casillero[][] tablero;
+	private Casillero[][] tablero;
 	private int score = 0;
 
 	public Tablero() {
@@ -27,24 +27,24 @@ public class Tablero {
 	}
 
 	public void llenarTablero() {
-		/*
-		 tablero[0][0] = new Casillero(5); tablero[0][1] = new Casillero(1);
-		 tablero[0][2] = new Casillero(8); tablero[0][3] = new Casillero(3);
-		 tablero[1][0] = new Casillero(47); tablero[1][1] = new Casillero(6);
-		 tablero[1][2] = new Casillero(8); tablero[1][3] = new Casillero(8);
-		 tablero[2][0] = new Casillero(2); tablero[2][1] = new Casillero(10);
-		 tablero[2][2] = new Casillero(11); tablero[2][3] = new Casillero(12);
-		 tablero[3][0] = new Casillero(25); tablero[3][1] = new Casillero(14);
-		 tablero[3][2] = new Casillero(15); tablero[3][3] = new Casillero(16);
-		 */
+		
+		 tablero[0][0] = new Casillero(0); tablero[0][1] = new Casillero(0);
+		 tablero[0][2] = new Casillero(4); tablero[0][3] = new Casillero(512);
+		 tablero[1][0] = new Casillero(512); tablero[1][1] = new Casillero(1024);
+		 tablero[1][2] = new Casillero(0); tablero[1][3] = new Casillero(0);
+		 tablero[2][0] = new Casillero(0); tablero[2][1] = new Casillero(0);
+		 tablero[2][2] = new Casillero(0); tablero[2][3] = new Casillero(0);
+		 tablero[3][0] = new Casillero(0); tablero[3][1] = new Casillero(0);
+		 tablero[3][2] = new Casillero(0); tablero[3][3] = new Casillero(0);
+		 /*
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				tablero[i][j] = new Casillero(0);
 				// System.out.println( "i:" + i + " "+ "j:" + j + " suma:"+ i+j);
 			}
 		}
+		 */
 		
-
 	}
 
 	public Casillero casilleroRandomVacio() {
@@ -80,6 +80,10 @@ public class Tablero {
 		}
 	}
 
+	public void resetScore () {
+		this.score = 0;
+	}
+	
 	private void setScore(int valor) {
 		this.score += valor;
 
@@ -230,7 +234,7 @@ public class Tablero {
 
 	}
 
-	public static boolean jugable() {
+	public boolean jugable() {
 		boolean ret = false;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -244,7 +248,7 @@ public class Tablero {
 		return ret;
 	}
 
-	public static boolean cercanosDisponibles(int i, int j) {
+	public boolean cercanosDisponibles(int i, int j) {
 		ArrayList<Integer> arreglo = new ArrayList<Integer>();
 		if (i + 1 <= 3) {
 			arreglo.add(tablero[i + 1][j].getValor());
@@ -280,7 +284,7 @@ public class Tablero {
 	public static void main(String[] strg) {
 		Tablero tablero = new Tablero();
 
-		// tablero.imprimir();
+		tablero.imprimir();
 	}
 
 }
