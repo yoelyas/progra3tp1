@@ -27,7 +27,7 @@ public class Tablero {
 	}
 
 	public void llenarTablero() {
-		
+		/*
 		 tablero[0][0] = new Casillero(512); tablero[0][1] = new Casillero(512);
 		 tablero[0][2] = new Casillero(512); tablero[0][3] = new Casillero(512);
 		 tablero[1][0] = new Casillero(512); tablero[1][1] = new Casillero(1024);
@@ -36,14 +36,14 @@ public class Tablero {
 		 tablero[2][2] = new Casillero(512); tablero[2][3] = new Casillero(512);
 		 tablero[3][0] = new Casillero(512); tablero[3][1] = new Casillero(512);
 		 tablero[3][2] = new Casillero(512); tablero[3][3] = new Casillero(512);
-		 /*
+		 */
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				tablero[i][j] = new Casillero(0);
 				// System.out.println( "i:" + i + " "+ "j:" + j + " suma:"+ i+j);
 			}
 		}
-		 */
+		 
 		
 	}
 
