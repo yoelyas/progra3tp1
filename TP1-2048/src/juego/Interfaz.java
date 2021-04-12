@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -24,6 +25,10 @@ import javax.swing.UIManager;
 import java.awt.Component;
 
 public class Interfaz {
+	/*private JFrame inicio;
+	private JButton try4x4;
+	private JButton try5x5;
+	private JButton try6x6;*/
 
 	private JFrame frmJuego;
 	private JTextField paneScore;
@@ -33,7 +38,8 @@ public class Interfaz {
 	private JButton seguirJugando;
 	private JPanel tableroPanel;
 	private boolean sigueJugando;
-	private Font fuenteNormal = new Font("Tahoma", Font.BOLD, 40);
+	private Font fuenteNormal = new Font("Tahoma", Font.BOLD, 50);
+	private int tamanioTablero = 5 ;
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +60,82 @@ public class Interfaz {
 	 * Create the application.
 	 */
 	public Interfaz() {
+		/*
+		inicio = new JFrame();
+		inicio.setTitle("Juego 2048");
+		inicio.getContentPane().setEnabled(false);
+		inicio.getContentPane().setBackground(new Color(255, 204, 153));
+		inicio.setBounds(100, 100, 125* tamanioTablero, 150*tamanioTablero);
+		inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		inicio.getContentPane().setLayout(null);
+		
+		
+		try4x4 = new JButton("4x4");
+		try4x4.setForeground(Color.BLACK);
+		try4x4.setHorizontalTextPosition(SwingConstants.CENTER);
+		try4x4.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		try4x4.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		try4x4.setBackground(Color.WHITE);
+		try4x4.setBorder(UIManager.getBorder("CheckBox.border"));
+		try4x4.setVisible(true);
+		
+		try4x4.setBounds(50* tamanioTablero, 70*tamanioTablero, 140, 23);
+		inicio.getContentPane().add(try4x4);
+		
+		
+		try5x5 = new JButton("5x5");
+		try5x5.setForeground(Color.BLACK);
+		try5x5.setHorizontalTextPosition(SwingConstants.CENTER);
+		try5x5.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		try5x5.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		try5x5.setBackground(Color.WHITE);
+		try5x5.setBorder(UIManager.getBorder("CheckBox.border"));
+		try5x5.setBounds(50* tamanioTablero, 80*tamanioTablero, 140, 23);
+		inicio.getContentPane().add(try5x5);
+		
+		
+		try6x6 = new JButton("6x6");
+		try6x6.setForeground(Color.BLACK);
+		try6x6.setHorizontalTextPosition(SwingConstants.CENTER);
+		try6x6.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		try6x6.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		try6x6.setBackground(Color.WHITE);
+		try6x6.setBorder(UIManager.getBorder("CheckBox.border"));
+		try6x6.setBounds(50* tamanioTablero, 90*tamanioTablero, 140, 23);
+		inicio.getContentPane().add(try6x6);
+		
+			
+		try4x4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tamanioTablero = 4;
+				try4x4.setVisible(false);
+				try5x5.setVisible(false);
+				try6x6.setVisible(false);
+				initialize();
+			}
+		});
+		try5x5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tamanioTablero = 5;
+				try4x4.setVisible(false);
+				try5x5.setVisible(false);
+				try6x6.setVisible(false);
+				initialize();
+			}
+		});
+		try6x6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tamanioTablero = 6;
+				try4x4.setVisible(false);
+				try5x5.setVisible(false);
+				try6x6.setVisible(false);
+				initialize();
+			}
+		});
+		*/
 		initialize();
 	}
 
@@ -62,10 +144,9 @@ public class Interfaz {
 	 */
 
 	private void initialize() {
-
 		// crea un tablero
-		tablero = new Tablero();
-		JLabel[][] tableroLabels = new JLabel[4][4];
+		tablero = new Tablero(tamanioTablero );
+		JLabel[][] tableroLabels = new JLabel[tamanioTablero][tamanioTablero];
 
 		// cositas de diseño random
 
@@ -74,7 +155,7 @@ public class Interfaz {
 		frmJuego.setTitle("Juego 2048");
 		frmJuego.getContentPane().setEnabled(false);
 		frmJuego.getContentPane().setBackground(new Color(255, 204, 153));
-		frmJuego.setBounds(100, 100, 500, 564);
+		frmJuego.setBounds(100, 100, 125* tamanioTablero, 150*tamanioTablero);
 		frmJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuego.getContentPane().setLayout(null);
 
@@ -131,7 +212,7 @@ public class Interfaz {
 			public void mouseClicked(MouseEvent e) {
 				setupEndGameWindow(false, 2);
 				tablero.resetScore();
-				tablero = new Tablero();
+				tablero = new Tablero(tamanioTablero);
 				sigueJugando = false;
 				actualizarTablero(tableroLabels);
 			}
@@ -158,17 +239,17 @@ public class Interfaz {
 		});
 
 
-		
-		seguirJugando.setBounds(177, 383, 140, 23);
+		//botones y carteles de fin de juego
+		seguirJugando.setBounds(50* tamanioTablero, 70*tamanioTablero, 140, 23);
 		frmJuego.getContentPane().add(seguirJugando);
 		
-		tryAgain.setBounds(143, 349, 200, 23);
+		tryAgain.setBounds(50* tamanioTablero, 80*tamanioTablero, 140, 23);
 		frmJuego.getContentPane().add(tryAgain);
 		
 		pantallaEnd.setText("Game over!");
 		pantallaEnd.setFont(new Font("Tahoma", Font.BOLD, 40));
 		pantallaEnd.setBackground(new Color(150, 150, 150));
-		pantallaEnd.setBounds(17, 60, 450, 450);
+		pantallaEnd.setBounds(17, 60, 120* tamanioTablero, 80 * tamanioTablero);
 
 		frmJuego.getContentPane().add(pantallaEnd);
 
@@ -179,142 +260,28 @@ public class Interfaz {
 		frmJuego.getContentPane().add(fondoJuego);
 
 		tableroPanel = new JPanel();
-		tableroPanel.setBorder(new LineBorder(new Color(150, 150, 150), 15));
-		tableroPanel.setBounds(17, 60, 450, 450);
+		tableroPanel.setBorder(new LineBorder(new Color(150, 150, 150), 20));
+		tableroPanel.setBounds(17, 60, 114 * tamanioTablero, 121 * tamanioTablero);
 		tableroPanel.setBackground(new Color(150, 150, 150));
-		tableroPanel.setLayout(new GridLayout(4, 4, 15, 15));
+		tableroPanel.setLayout(new GridLayout(tamanioTablero , tamanioTablero, tamanioTablero*2, tamanioTablero*2));
 		frmJuego.getContentPane().add(tableroPanel);
 
 		
-		JLabel label0x0 = new JLabel(tablero.obtenerCasillero(0, 0));
-		tableroPanel.add(label0x0);
-		label0x0.setBackground(changeColor(tablero.obtenerCasillero(0, 0)));
-		label0x0.setOpaque(true);
-		label0x0.setHorizontalAlignment(SwingConstants.CENTER);
-		label0x0.setFont(fuenteNormal);
-		tableroLabels[0][0] = label0x0;
-
-		JLabel label0x1 = new JLabel(tablero.obtenerCasillero(0, 1));
-		tableroPanel.add(label0x1);
-		label0x1.setBackground(changeColor(tablero.obtenerCasillero(0, 1)));
-		label0x1.setOpaque(true);
-		label0x1.setHorizontalAlignment(SwingConstants.CENTER);
-		label0x1.setFont(fuenteNormal);
-		tableroLabels[0][1] = label0x1;
-
-		JLabel label0x2 = new JLabel(tablero.obtenerCasillero(0, 2));
-		tableroPanel.add(label0x2);
-		label0x2.setBackground(changeColor(tablero.obtenerCasillero(0, 2)));
-		label0x2.setOpaque(true);
-		label0x2.setHorizontalAlignment(SwingConstants.CENTER);
-		label0x2.setFont(fuenteNormal);
-		tableroLabels[0][2] = label0x2;
-
-		JLabel label0x3 = new JLabel(tablero.obtenerCasillero(0, 3));
-		tableroPanel.add(label0x3);
-		label0x3.setBackground(changeColor(tablero.obtenerCasillero(0, 3)));
-		label0x3.setOpaque(true);
-		label0x3.setHorizontalAlignment(SwingConstants.CENTER);
-		label0x3.setFont(fuenteNormal);
-		tableroLabels[0][3] = label0x3;
-
-		JLabel label1x0 = new JLabel(tablero.obtenerCasillero(1, 0));
-		tableroPanel.add(label1x0);
-		label1x0.setBackground(changeColor(tablero.obtenerCasillero(1, 0)));
-		label1x0.setOpaque(true);
-		label1x0.setHorizontalAlignment(SwingConstants.CENTER);
-		label1x0.setFont(fuenteNormal);
-		tableroLabels[1][0] = label1x0;
-
-		JLabel label1x1 = new JLabel(tablero.obtenerCasillero(1, 1));
-		tableroPanel.add(label1x1);
-		label1x1.setBackground(changeColor(tablero.obtenerCasillero(1, 1)));
-		label1x1.setOpaque(true);
-		label1x1.setForeground(new Color(0, 0, 0));
-		label1x1.setHorizontalAlignment(SwingConstants.CENTER);
-		label1x1.setFont(fuenteNormal);
-		tableroLabels[1][1] = label1x1;
-
-		JLabel label1x2 = new JLabel(tablero.obtenerCasillero(1, 2));
-		tableroPanel.add(label1x2);
-		label1x2.setBackground(changeColor(tablero.obtenerCasillero(1, 2)));
-		label1x2.setOpaque(true);
-		label1x2.setHorizontalAlignment(SwingConstants.CENTER);
-		label1x2.setFont(fuenteNormal);
-		tableroLabels[1][2] = label1x2;
-
-		JLabel label1x3 = new JLabel(tablero.obtenerCasillero(1, 3));
-		tableroPanel.add(label1x3);
-		label1x3.setBackground(changeColor(tablero.obtenerCasillero(1, 3)));
-		label1x3.setOpaque(true);
-		label1x3.setHorizontalAlignment(SwingConstants.CENTER);
-		label1x3.setFont(fuenteNormal);
-		tableroLabels[1][3] = label1x3;
-
-		JLabel label2x0 = new JLabel(tablero.obtenerCasillero(2, 0));
-		tableroPanel.add(label2x0);
-		label2x0.setBackground(changeColor(tablero.obtenerCasillero(2, 0)));
-		label2x0.setOpaque(true);
-		label2x0.setHorizontalAlignment(SwingConstants.CENTER);
-		label2x0.setFont(fuenteNormal);
-		tableroLabels[2][0] = label2x0;
-
-		JLabel label2x1 = new JLabel(tablero.obtenerCasillero(2, 1));
-		tableroPanel.add(label2x1);
-		label2x1.setBackground(changeColor(tablero.obtenerCasillero(2, 1)));
-		label2x1.setOpaque(true);
-		label2x1.setHorizontalAlignment(SwingConstants.CENTER);
-		label2x1.setFont(fuenteNormal);
-		tableroLabels[2][1] = label2x1;
-
-		JLabel label2x2 = new JLabel(tablero.obtenerCasillero(2, 2));
-		tableroPanel.add(label2x2);
-		label2x2.setBackground(changeColor(tablero.obtenerCasillero(2, 2)));
-		label2x2.setOpaque(true);
-		label2x2.setHorizontalAlignment(SwingConstants.CENTER);
-		label2x2.setFont(fuenteNormal);
-		tableroLabels[2][2] = label2x2;
-
-		JLabel label2x3 = new JLabel(tablero.obtenerCasillero(2, 3));
-		tableroPanel.add(label2x3);
-		label2x3.setBackground(changeColor(tablero.obtenerCasillero(2, 3)));
-		label2x3.setOpaque(true);
-		label2x3.setHorizontalAlignment(SwingConstants.CENTER);
-		label2x3.setFont(fuenteNormal);
-		tableroLabels[2][3] = label2x3;
-
-		JLabel label3x0 = new JLabel(tablero.obtenerCasillero(3, 0));
-		tableroPanel.add(label3x0);
-		label3x0.setBackground(changeColor(tablero.obtenerCasillero(3, 0)));
-		label3x0.setOpaque(true);
-		label3x0.setHorizontalAlignment(SwingConstants.CENTER);
-		label3x0.setFont(fuenteNormal);
-		tableroLabels[3][0] = label3x0;
-
-		JLabel label3x1 = new JLabel(tablero.obtenerCasillero(3, 1));
-		tableroPanel.add(label3x1);
-		label3x1.setBackground(changeColor(tablero.obtenerCasillero(3, 1)));
-		label3x1.setOpaque(true);
-		label3x1.setHorizontalAlignment(SwingConstants.CENTER);
-		label3x1.setFont(fuenteNormal);
-		tableroLabels[3][1] = label3x1;
-
-		JLabel label3x2 = new JLabel(tablero.obtenerCasillero(3, 2));
-		tableroPanel.add(label3x2);
-		label3x2.setBackground(changeColor(tablero.obtenerCasillero(3, 2)));
-		label3x2.setOpaque(true);
-		label3x2.setHorizontalAlignment(SwingConstants.CENTER);
-		label3x2.setFont(fuenteNormal);
-		tableroLabels[3][2] = label3x2;
-
-		JLabel label3x3 = new JLabel(tablero.obtenerCasillero(3, 3));
-		tableroPanel.add(label3x3);
-		label3x3.setBackground(changeColor(tablero.obtenerCasillero(3, 3)));
-		label3x3.setOpaque(true);
-		label3x3.setHorizontalAlignment(SwingConstants.CENTER);
-		label3x3.setFont(fuenteNormal);
-		tableroLabels[3][3] = label3x3;
-
+		
+		
+		//ArrayList<JLabel> casillas = new ArrayList(tamanioTablero * tamanioTablero);
+		for (int eje1 = 0; eje1 < tamanioTablero; eje1++) {
+			for (int eje2 = 0; eje2 < tamanioTablero; eje2++) {
+				JLabel casilla = new JLabel(tablero.obtenerCasillero(eje1, eje2));
+				tableroPanel.add(casilla);
+				casilla.setBackground(changeColor(tablero.obtenerCasillero(eje1,eje2)));
+				casilla.setOpaque(true);
+				casilla.setHorizontalAlignment(SwingConstants.CENTER);
+				casilla.setFont(fuenteNormal);
+				tableroLabels[eje1][eje2] = casilla;
+			}
+		}
+		
 		paneScore = new JTextField();
 		paneScore.setEditable(false);
 		paneScore.setBorder(null);
@@ -330,8 +297,8 @@ public class Interfaz {
 
 	private void actualizarTablero(JLabel[][] tableroLabels) {
 		boolean won = false;
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < tamanioTablero; i++) {
+			for (int j = 0; j < tamanioTablero; j++) {
 				String number = tablero.obtenerCasillero(i, j);
 				tableroLabels[i][j].setText(number);
 				tableroLabels[i][j].setForeground(new Color(0, 0, 0));
@@ -339,12 +306,12 @@ public class Interfaz {
 				tableroLabels[i][j].setOpaque(true);
 
 				paneScore.setText("SCORE: " + tablero.getScore());
-
-				if (number.length() == 4) {
-					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 34));
+				if(number.length() >2) {
+					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 114 / number.length() ));
+				}else {
+					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 50 ));
 				}
-				else
-					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 40));
+				
 				won = won || number.equals("2048");
 			}
 		}
