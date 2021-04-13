@@ -9,6 +9,7 @@ import java.awt.Font;
 
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.event.KeyAdapter;
@@ -37,8 +38,9 @@ public class Interfaz {
 	private JButton tryAgain;
 	private JButton seguirJugando;
 	private JPanel tableroPanel;
-	private boolean sigueJugando;
 	private Font fuenteNormal = new Font("Tahoma", Font.BOLD, 50);
+	private boolean sigueJugando;
+	private boolean movimientoHabilitado;
 	private int tamanioTablero = 5 ;
 	/**
 	 * Launch the application.
@@ -60,83 +62,27 @@ public class Interfaz {
 	 * Create the application.
 	 */
 	public Interfaz() {
-		/*
-		inicio = new JFrame();
-		inicio.setTitle("Juego 2048");
-		inicio.getContentPane().setEnabled(false);
-		inicio.getContentPane().setBackground(new Color(255, 204, 153));
-		inicio.setBounds(100, 100, 125* tamanioTablero, 150*tamanioTablero);
-		inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		inicio.getContentPane().setLayout(null);
-		
-		
-		try4x4 = new JButton("4x4");
-		try4x4.setForeground(Color.BLACK);
-		try4x4.setHorizontalTextPosition(SwingConstants.CENTER);
-		try4x4.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		try4x4.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		try4x4.setBackground(Color.WHITE);
-		try4x4.setBorder(UIManager.getBorder("CheckBox.border"));
-		try4x4.setVisible(true);
-		
-		try4x4.setBounds(50* tamanioTablero, 70*tamanioTablero, 140, 23);
-		inicio.getContentPane().add(try4x4);
-		
-		
-		try5x5 = new JButton("5x5");
-		try5x5.setForeground(Color.BLACK);
-		try5x5.setHorizontalTextPosition(SwingConstants.CENTER);
-		try5x5.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		try5x5.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		try5x5.setBackground(Color.WHITE);
-		try5x5.setBorder(UIManager.getBorder("CheckBox.border"));
-		try5x5.setBounds(50* tamanioTablero, 80*tamanioTablero, 140, 23);
-		inicio.getContentPane().add(try5x5);
-		
-		
-		try6x6 = new JButton("6x6");
-		try6x6.setForeground(Color.BLACK);
-		try6x6.setHorizontalTextPosition(SwingConstants.CENTER);
-		try6x6.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		try6x6.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		try6x6.setBackground(Color.WHITE);
-		try6x6.setBorder(UIManager.getBorder("CheckBox.border"));
-		try6x6.setBounds(50* tamanioTablero, 90*tamanioTablero, 140, 23);
-		inicio.getContentPane().add(try6x6);
-		
+		String stringUsuario = JOptionPane.showInputDialog (null, "Introduzca el tamaño de matriz que desea: \n" + "Ejemplo: 5 (crea una matriz 5x5)" , "Dificultad" , JOptionPane.QUESTION_MESSAGE);	
+		int userEntry = 0;
+		while (stringUsuario == "" || userEntry < 4 || userEntry > 6) {
 			
-		try4x4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				tamanioTablero = 4;
-				try4x4.setVisible(false);
-				try5x5.setVisible(false);
-				try6x6.setVisible(false);
-				initialize();
+			if (stringUsuario == "" || userEntry < 4 || userEntry > 6) {
+				userEntry = Integer.parseInt(stringUsuario);
+				String entradaUsuario2 = JOptionPane.showInputDialog ( "Te recomendamos que sea una matriz entre 4 y 6!");
+				userEntry = Integer.parseInt(entradaUsuario2);
+			} else {
+			tamanioTablero = userEntry;
+
 			}
-		});
-		try5x5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				tamanioTablero = 5;
-				try4x4.setVisible(false);
-				try5x5.setVisible(false);
-				try6x6.setVisible(false);
-				initialize();
-			}
-		});
-		try6x6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				tamanioTablero = 6;
-				try4x4.setVisible(false);
-				try5x5.setVisible(false);
-				try6x6.setVisible(false);
-				initialize();
-			}
-		});
-		*/
+		}
+		
+		if (stringUsuario == null) {
+			System.exit(0);
+		} 
+		
+		tamanioTablero = userEntry;
 		initialize();
+		
 	}
 
 	/**
@@ -147,7 +93,7 @@ public class Interfaz {
 		// crea un tablero
 		tablero = new Tablero(tamanioTablero );
 		JLabel[][] tableroLabels = new JLabel[tamanioTablero][tamanioTablero];
-
+		movimientoHabilitado = true;
 		// cositas de diseño random
 
 
@@ -170,19 +116,19 @@ public class Interfaz {
 				// Podemos tener 1 solo mover publico en tablero, los mover en x direccion
 				// privados
 				// Habria que pasar como parametro la dirección en todo caso
-				if (e.getKeyCode() == KeyEvent.VK_UP) {
+				if (e.getKeyCode() == KeyEvent.VK_UP && movimientoHabilitado) {
 					tablero.mover("arriba");
 					actualizarTablero(tableroLabels);
 				}
-				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				if (e.getKeyCode() == KeyEvent.VK_LEFT && movimientoHabilitado) {
 					tablero.mover("izquierda");
 					actualizarTablero(tableroLabels);
 				}
-				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN && movimientoHabilitado) {
 					tablero.mover("abajo");
 					actualizarTablero(tableroLabels);
 				}
-				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT && movimientoHabilitado) {
 					tablero.mover("derecha");
 					actualizarTablero(tableroLabels);
 				}
@@ -215,6 +161,7 @@ public class Interfaz {
 				tablero = new Tablero(tamanioTablero);
 				sigueJugando = false;
 				actualizarTablero(tableroLabels);
+				movimientoHabilitado = true;
 			}
 		});
 		
@@ -235,6 +182,7 @@ public class Interfaz {
 				tryAgain.setVisible(false);
 				seguirJugando.setVisible(false);
 				sigueJugando = true;
+				movimientoHabilitado = true;
 			}
 		});
 
@@ -325,6 +273,7 @@ public class Interfaz {
 	}
 	
 	private void setupEndGameWindow(boolean value, int resultado) {
+		movimientoHabilitado = false;
 		tableroPanel.setVisible(!value);
 		pantallaEnd.setVisible(value);
 		tryAgain.setVisible(value);		
