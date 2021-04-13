@@ -101,17 +101,13 @@ public class Interfaz {
 		frmJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuego.getContentPane().setLayout(null);
 
-		// detecta cuando pulsamos flecha arriba
-
 		JEditorPane fondoJuego = new JEditorPane();
 		fondoJuego.setEditable(false);
 
 		fondoJuego.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				// Podemos tener 1 solo mover publico en tablero, los mover en x direccion
-				// privados
-				// Habria que pasar como parametro la dirección en todo caso
+
 				if (e.getKeyCode() == KeyEvent.VK_UP && movimientoHabilitado) {
 					tablero.mover("arriba");
 					actualizarTablero(tableroLabels);
