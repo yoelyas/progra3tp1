@@ -26,10 +26,10 @@ import javax.swing.UIManager;
 import java.awt.Component;
 
 public class Interfaz {
-	/*private JFrame inicio;
-	private JButton try4x4;
-	private JButton try5x5;
-	private JButton try6x6;*/
+	/*
+	 * private JFrame inicio; private JButton try4x4; private JButton try5x5;
+	 * private JButton try6x6;
+	 */
 
 	private JFrame frmJuego;
 	private JTextField paneScore;
@@ -41,7 +41,8 @@ public class Interfaz {
 	private Font fuenteNormal = new Font("Tahoma", Font.BOLD, 50);
 	private boolean sigueJugando;
 	private boolean movimientoHabilitado;
-	private int tamanioTablero = 5 ;
+	private int tamanioTablero = 5;
+
 	/**
 	 * Launch the application.
 	 */
@@ -66,18 +67,19 @@ public class Interfaz {
 		String[] options = new String[2];
 		options[0] = new String("4x4");
 		options[1] = new String("5x5");
-		int eleccionUsuario = JOptionPane.showOptionDialog(inicio.getContentPane(),"Seleccione la dificultad del juego",
-				"Dificultad", 0,JOptionPane.QUESTION_MESSAGE,null,options,null);
-		if (eleccionUsuario == JOptionPane.YES_OPTION ) {
+		int eleccionUsuario = JOptionPane.showOptionDialog(inicio.getContentPane(),
+				"Seleccione la dificultad del juego", "Dificultad", 0, JOptionPane.QUESTION_MESSAGE, null, options,
+				null);
+		if (eleccionUsuario == JOptionPane.YES_OPTION) {
 			tamanioTablero = 4;
-		} else if (eleccionUsuario == JOptionPane.NO_OPTION ) {
+		} else if (eleccionUsuario == JOptionPane.NO_OPTION) {
 			tamanioTablero = 5;
 		} else {
 			System.exit(0);
 		}
 
 		initialize();
-		
+
 	}
 
 	/**
@@ -91,12 +93,11 @@ public class Interfaz {
 		movimientoHabilitado = true;
 		// cositas de diseño random
 
-
 		frmJuego = new JFrame();
 		frmJuego.setTitle("Juego 2048");
 		frmJuego.getContentPane().setEnabled(false);
 		frmJuego.getContentPane().setBackground(new Color(255, 204, 153));
-		frmJuego.setBounds(100, 100, 125* tamanioTablero, 150*tamanioTablero);
+		frmJuego.setBounds(100, 100, 125 * tamanioTablero, 150 * tamanioTablero);
 		frmJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuego.getContentPane().setLayout(null);
 
@@ -130,7 +131,7 @@ public class Interfaz {
 			}
 
 		});
-		
+
 		pantallaEnd = new JTextField();
 		pantallaEnd.setDisabledTextColor(Color.WHITE);
 		pantallaEnd.setEditable(false);
@@ -138,7 +139,7 @@ public class Interfaz {
 		pantallaEnd.setOpaque(false);
 		pantallaEnd.setHorizontalAlignment(SwingConstants.CENTER);
 		pantallaEnd.setBorder(null);
-		
+
 		tryAgain = new JButton("Volver a jugar");
 		tryAgain.setRolloverEnabled(false);
 		tryAgain.setForeground(Color.BLACK);
@@ -159,7 +160,7 @@ public class Interfaz {
 				movimientoHabilitado = true;
 			}
 		});
-		
+
 		seguirJugando = new JButton("Seguir jugando");
 		seguirJugando.setForeground(Color.BLACK);
 		seguirJugando.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -177,18 +178,17 @@ public class Interfaz {
 			}
 		});
 
-
-		//botones y carteles de fin de juego
-		seguirJugando.setBounds(50* tamanioTablero, 70*tamanioTablero, 140, 23);
+		// botones y carteles de fin de juego
+		seguirJugando.setBounds(50 * tamanioTablero, 70 * tamanioTablero, 140, 23);
 		frmJuego.getContentPane().add(seguirJugando);
-		
-		tryAgain.setBounds(50* tamanioTablero, 80*tamanioTablero, 140, 23);
+
+		tryAgain.setBounds(50 * tamanioTablero, 80 * tamanioTablero, 140, 23);
 		frmJuego.getContentPane().add(tryAgain);
-		
+
 		pantallaEnd.setText("Game over!");
 		pantallaEnd.setFont(new Font("Tahoma", Font.BOLD, 40));
 		pantallaEnd.setBackground(new Color(150, 150, 150));
-		pantallaEnd.setBounds(17, 60, 120* tamanioTablero, 80 * tamanioTablero);
+		pantallaEnd.setBounds(17, 60, 120 * tamanioTablero, 80 * tamanioTablero);
 
 		frmJuego.getContentPane().add(pantallaEnd);
 
@@ -202,25 +202,21 @@ public class Interfaz {
 		tableroPanel.setBorder(new LineBorder(new Color(150, 150, 150), 20));
 		tableroPanel.setBounds(17, 60, 114 * tamanioTablero, 121 * tamanioTablero);
 		tableroPanel.setBackground(new Color(150, 150, 150));
-		tableroPanel.setLayout(new GridLayout(tamanioTablero , tamanioTablero, tamanioTablero*2, tamanioTablero*2));
+		tableroPanel.setLayout(new GridLayout(tamanioTablero, tamanioTablero, tamanioTablero * 2, tamanioTablero * 2));
 		frmJuego.getContentPane().add(tableroPanel);
 
-		
-		
-		
-		//ArrayList<JLabel> casillas = new ArrayList(tamanioTablero * tamanioTablero);
 		for (int eje1 = 0; eje1 < tamanioTablero; eje1++) {
 			for (int eje2 = 0; eje2 < tamanioTablero; eje2++) {
 				JLabel casilla = new JLabel(tablero.obtenerCasillero(eje1, eje2));
 				tableroPanel.add(casilla);
-				casilla.setBackground(changeColor(tablero.obtenerCasillero(eje1,eje2)));
+				casilla.setBackground(changeColor(tablero.obtenerCasillero(eje1, eje2)));
 				casilla.setOpaque(true);
 				casilla.setHorizontalAlignment(SwingConstants.CENTER);
 				casilla.setFont(fuenteNormal);
 				tableroLabels[eje1][eje2] = casilla;
 			}
 		}
-		
+
 		paneScore = new JTextField();
 		paneScore.setEditable(false);
 		paneScore.setBorder(null);
@@ -245,45 +241,44 @@ public class Interfaz {
 				tableroLabels[i][j].setOpaque(true);
 
 				paneScore.setText("SCORE: " + tablero.getScore());
-				if(number.length() >2) {
-					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 114 / number.length() ));
-				}else {
-					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 50 ));
+				if (number.length() > 2) {
+					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 114 / number.length()));
+				} else {
+					tableroLabels[i][j].setFont(new Font("Tahoma", Font.BOLD, 50));
 				}
-				
+
 				won = won || number.equals("2048");
 			}
 		}
 		if (won && sigueJugando == false) {
 			setupEndGameWindow(true, 1);
-			
-		} 
+
+		}
 		if (!tablero.jugable()) {
 			setupEndGameWindow(true, 0);
 		}
 	}
-	
+
 	private void setupEndGameWindow(boolean value, int resultado) {
 		movimientoHabilitado = false;
 		tableroPanel.setVisible(!value);
 		pantallaEnd.setVisible(value);
-		tryAgain.setVisible(value);		
+		tryAgain.setVisible(value);
 		seguirJugando.setVisible(value);
 		if (resultado == 0) {
 			pantallaEnd.setText("Game over!");
 			tryAgain.setText("Volver a intentar");
 			seguirJugando.setVisible(!value);
-		}
-		else if (resultado == 1) {
+		} else if (resultado == 1) {
 			pantallaEnd.setText("Ganaste!");
 			seguirJugando.setText("Seguir jugando");
 			tryAgain.setText("Volver a empezar");
 			seguirJugando.setVisible(value);
 		}
 	}
-	
+
 	private Color changeColor(String valor) {
-		if(valor.equals("0") || valor.equals("")) {
+		if (valor.equals("0") || valor.equals("")) {
 			return new Color(204, 192, 179);
 		} else if (valor.equals("2")) {
 			return new Color(238, 228, 218);

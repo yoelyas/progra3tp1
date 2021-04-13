@@ -7,6 +7,7 @@ public class Tablero {
 	private Casillero[][] tablero;
 	private int score = 0;
 	private int tamanioTablero = 0;
+
 	public Tablero(int num) {
 		tamanioTablero = num;
 		tablero = new Casillero[tamanioTablero][tamanioTablero];
@@ -22,24 +23,13 @@ public class Tablero {
 	}
 
 	public void llenarTablero() {
-		
-		
-		 
+
 		for (int i = 0; i < tamanioTablero; i++) {
 			for (int j = 0; j < tamanioTablero; j++) {
 				tablero[i][j] = new Casillero(0);
 			}
 		}
-		/*
-		 tablero[0][0] = new Casillero(512); tablero[0][1] = new Casillero(512);
-		 tablero[0][2] = new Casillero(512); tablero[0][3] = new Casillero(512);
-		 tablero[1][0] = new Casillero(512); tablero[1][1] = new Casillero(1024);
-		 tablero[1][2] = new Casillero(512); tablero[1][3] = new Casillero(512);
-		 tablero[2][0] = new Casillero(512); tablero[2][1] = new Casillero(512);
-		 tablero[2][2] = new Casillero(512); tablero[2][3] = new Casillero(512);
-		 tablero[3][0] = new Casillero(512); tablero[3][1] = new Casillero(512);
-		 tablero[3][2] = new Casillero(512); tablero[3][3] = new Casillero(512);
-		*/
+
 	}
 
 	public Casillero casilleroRandomVacio() {
@@ -75,9 +65,8 @@ public class Tablero {
 		}
 	}
 
-
 	public void mover(String direccion) {
-		
+
 		int tamanio = tamanioTablero; // tamanio del tablero
 
 		ArrayList<Integer> eje1 = new ArrayList<Integer>();
@@ -97,7 +86,7 @@ public class Tablero {
 				eje1.add(n);
 				eje2.add(n);
 			}
-			
+
 			porFila = false;
 			porColumna = true;
 
@@ -111,7 +100,7 @@ public class Tablero {
 
 			for (int m = tamanio - 1; m >= 0; m--) {
 				eje2.add(m);
-				// System.out.println(m);
+
 			}
 			porFila = false;
 			porColumna = true;
@@ -136,7 +125,7 @@ public class Tablero {
 			}
 			for (int m = tamanio - 1; m >= 0; m--) {
 				eje2.add(m);
-				// System.out.println(m);
+
 			}
 			porFila = true;
 			porColumna = false;
@@ -167,9 +156,6 @@ public class Tablero {
 
 					fila = porFila ? eje1.get(i1) : eje2.get(i2);
 					columna = porColumna ? eje1.get(i1) : eje2.get(i2);
-
-					// System.out.println("C[" + columna + "] F[" + fila + "]: " +
-					// tablero[fila][columna].getValor());
 
 					// si itero por fila solo incremento el indice del eje secundario (i2)
 					int filaSiguiente = porFila ? eje1.get(i1) : eje2.get(i2 + 1);
@@ -230,13 +216,13 @@ public class Tablero {
 
 	public boolean cercanosDisponibles(int i, int j) {
 		ArrayList<Integer> arreglo = new ArrayList<Integer>();
-		if (i + 1 <= tamanioTablero -1) {
+		if (i + 1 <= tamanioTablero - 1) {
 			arreglo.add(tablero[i + 1][j].getValor());
 		}
 		if (i - 1 >= 0) {
 			arreglo.add(tablero[i - 1][j].getValor());
 		}
-		if (j + 1 <= tamanioTablero -1) {
+		if (j + 1 <= tamanioTablero - 1) {
 			arreglo.add(tablero[i][j + 1].getValor());
 		}
 		if (j - 1 >= 0) {
@@ -249,10 +235,10 @@ public class Tablero {
 
 	}
 
-	public void resetScore () {
+	public void resetScore() {
 		this.score = 0;
 	}
-	
+
 	private void setScore(int valor) {
 		this.score += valor;
 
@@ -261,23 +247,5 @@ public class Tablero {
 	public int getScore() {
 		return this.score;
 	}
-	
-	// -----------------------------------------------------------//
-/*
-	public void imprimir() {
-		for (int i = 0; i <= tamanioTablero -1; i++) {
-			System.out.println("\n");
-			for (int j = 0; j <= tamanioTablero -1 ; j++) {
-				System.out.print(tablero[i][j].getValor() + " ");
-			}
-		}
-
-	}
-
-	public static void main(String[] strg) {
-		Tablero tablero = new Tablero();
-
-		tablero.imprimir();
-	}*/
 
 }
