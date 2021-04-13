@@ -62,25 +62,20 @@ public class Interfaz {
 	 * Create the application.
 	 */
 	public Interfaz() {
-		String stringUsuario = JOptionPane.showInputDialog (null, "Introduzca el tamaño de matriz que desea: \n" + "Ejemplo: 5 (crea una matriz 5x5)" , "Dificultad" , JOptionPane.QUESTION_MESSAGE);	
-		int userEntry = 0;
-		while (stringUsuario == "" || userEntry < 4 || userEntry > 6) {
-			
-			if (stringUsuario == "" || userEntry < 4 || userEntry > 6) {
-				userEntry = Integer.parseInt(stringUsuario);
-				String entradaUsuario2 = JOptionPane.showInputDialog ( "Te recomendamos que sea una matriz entre 4 y 6!");
-				userEntry = Integer.parseInt(entradaUsuario2);
-			} else {
-			tamanioTablero = userEntry;
-
-			}
-		}
-		
-		if (stringUsuario == null) {
+		JFrame inicio = new JFrame();
+		String[] options = new String[2];
+		options[0] = new String("4x4");
+		options[1] = new String("5x5");
+		int eleccionUsuario = JOptionPane.showOptionDialog(inicio.getContentPane(),"Seleccione la dificultad del juego",
+				"Dificultad", 0,JOptionPane.QUESTION_MESSAGE,null,options,null);
+		if (eleccionUsuario == JOptionPane.YES_OPTION ) {
+			tamanioTablero = 4;
+		} else if (eleccionUsuario == JOptionPane.NO_OPTION ) {
+			tamanioTablero = 5;
+		} else {
 			System.exit(0);
-		} 
-		
-		tamanioTablero = userEntry;
+		}
+
 		initialize();
 		
 	}
@@ -91,7 +86,7 @@ public class Interfaz {
 
 	private void initialize() {
 		// crea un tablero
-		tablero = new Tablero(tamanioTablero );
+		tablero = new Tablero(tamanioTablero);
 		JLabel[][] tableroLabels = new JLabel[tamanioTablero][tamanioTablero];
 		movimientoHabilitado = true;
 		// cositas de diseño random
@@ -177,10 +172,6 @@ public class Interfaz {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setupEndGameWindow(false, 2);
-				//pantallaEnd.setVisible(false);
-				//tableroPanel.setVisible(true);
-				tryAgain.setVisible(false);
-				seguirJugando.setVisible(false);
 				sigueJugando = true;
 				movimientoHabilitado = true;
 			}
@@ -283,13 +274,12 @@ public class Interfaz {
 			tryAgain.setText("Volver a intentar");
 			seguirJugando.setVisible(!value);
 		}
-		else if (resultado == 1){
+		else if (resultado == 1) {
 			pantallaEnd.setText("Ganaste!");
 			seguirJugando.setText("Seguir jugando");
 			tryAgain.setText("Volver a empezar");
 			seguirJugando.setVisible(value);
 		}
-		paneScore.setText("SCORE: " + tablero.getScore());
 	}
 	
 	private Color changeColor(String valor) {

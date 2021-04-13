@@ -8,12 +8,6 @@ public class Tablero {
 	private int score = 0;
 	private int tamanioTablero = 0;
 	public Tablero(int num) {
-		/*
-		 * crea un tablero de 4x4 de tipo Casillero 0 1 2 3 0 1 2 3
-		 * 
-		 * y lo llena con Casilleros en 0
-		 * 
-		 */
 		tamanioTablero = num;
 		tablero = new Casillero[tamanioTablero][tamanioTablero];
 
@@ -34,7 +28,6 @@ public class Tablero {
 		for (int i = 0; i < tamanioTablero; i++) {
 			for (int j = 0; j < tamanioTablero; j++) {
 				tablero[i][j] = new Casillero(0);
-				// System.out.println( "i:" + i + " "+ "j:" + j + " suma:"+ i+j);
 			}
 		}
 		/*
@@ -82,18 +75,6 @@ public class Tablero {
 		}
 	}
 
-	public void resetScore () {
-		this.score = 0;
-	}
-	
-	private void setScore(int valor) {
-		this.score += valor;
-
-	}
-
-	public int getScore() {
-		return this.score;
-	}
 
 	public void mover(String direccion) {
 		
@@ -111,14 +92,14 @@ public class Tablero {
 		switch (direccion) {
 
 		case "arriba":
-			porFila = false;
-			porColumna = true;
-
 			// setear valores de los ejes
 			for (int n = 0; n < tamanio; n++) {
 				eje1.add(n);
 				eje2.add(n);
 			}
+			
+			porFila = false;
+			porColumna = true;
 
 			break;
 
@@ -143,7 +124,6 @@ public class Tablero {
 				eje1.add(n);
 				eje2.add(n);
 			}
-
 			porFila = true;
 			porColumna = false;
 
@@ -154,12 +134,10 @@ public class Tablero {
 			for (int n = 0; n < tamanio; n++) {
 				eje1.add(n);
 			}
-
 			for (int m = tamanio - 1; m >= 0; m--) {
 				eje2.add(m);
 				// System.out.println(m);
 			}
-
 			porFila = true;
 			porColumna = false;
 
@@ -271,6 +249,19 @@ public class Tablero {
 
 	}
 
+	public void resetScore () {
+		this.score = 0;
+	}
+	
+	private void setScore(int valor) {
+		this.score += valor;
+
+	}
+
+	public int getScore() {
+		return this.score;
+	}
+	
 	// -----------------------------------------------------------//
 /*
 	public void imprimir() {
